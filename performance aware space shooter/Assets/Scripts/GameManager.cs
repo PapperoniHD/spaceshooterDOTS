@@ -13,11 +13,13 @@ public class GameManager : MonoBehaviour
     public int spawnAmount = 5;
     public GameObject player;
     public GameObject enemyPrefab;
-
+    
     public static GameManager GM;
 
     public TextMeshProUGUI pointsUI;
     public TextMeshProUGUI waveUI;
+
+    bool canSpawn = true;
 
     // Start is called before the first frame update
     void Start()
@@ -39,13 +41,21 @@ public class GameManager : MonoBehaviour
         NextWave();
     }
 
+    IEnumerator WaveDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        spawnAmount = wave * 2 + spawnAmount;
+        wave++;
+        StartCoroutine(SpawnEnemies());
+        yield return new WaitForSeconds(5f);
+        canSpawn = true;
+    }
     void NextWave()
     {
-        if (enemyCount <= 0) 
+        if (enemyCount <= 0 && canSpawn) 
         {
-            spawnAmount = wave * 2 + spawnAmount;
-            wave++;
-            SpawnEnemies();
+            canSpawn = false;
+            StartCoroutine(WaveDelay());
         }
         if (enemyCount < 0)
         {
@@ -53,12 +63,13 @@ public class GameManager : MonoBehaviour
         }
         
     }
-    void SpawnEnemies()
+    IEnumerator SpawnEnemies()
     {  
         for (int i = 0; i < spawnAmount; i++)
         {
             var spawnPoint = RandomPointOnCircleEdge(spawnRadius);
             Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
+            yield return new WaitForSeconds(1);
         }    
     }
     public Vector3 RandomPointOnCircleEdge(float radius)
