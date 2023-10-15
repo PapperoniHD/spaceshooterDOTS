@@ -54,8 +54,7 @@ public class GameManager : MonoBehaviour
         
     }
     void SpawnEnemies()
-    {
-       
+    {  
         for (int i = 0; i < spawnAmount; i++)
         {
             var spawnPoint = RandomPointOnCircleEdge(spawnRadius);

@@ -7,7 +7,7 @@ public class EnemyScript : MonoBehaviour
 {
     public GameObject player;
     private Rigidbody2D rb;
-
+    public ParticleSystem ps;
     public float speed = 5f;
 
     // Start is called before the first frame update
@@ -27,9 +27,10 @@ public class EnemyScript : MonoBehaviour
     void Death(GameObject go)
     {
         GameManager.GM.points++;
-        Destroy(go);
-        Destroy(gameObject);
         GameManager.GM.enemyCount--;
+        Instantiate(ps, transform.position, transform.rotation);
+        Destroy(go);
+        Destroy(gameObject);       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,6 +38,8 @@ public class EnemyScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             GameManager.GM.enemyCount--;
+            collision.gameObject.GetComponent<PlayerMovement>().health--;
+            collision.gameObject.GetComponent<PlayerMovement>().StartCoroutine(collision.gameObject.GetComponent<PlayerMovement>().Damage());
             Destroy(gameObject);
         }
         if (collision.CompareTag("Bullet"))

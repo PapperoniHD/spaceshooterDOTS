@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
+using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Values")]
@@ -19,11 +20,15 @@ public class PlayerMovement : MonoBehaviour
     private GameObject bulletPrefab;
     [SerializeField]
     private Transform bulletSpawnPos;
+    [SerializeField]
+    private TextMeshProUGUI healthUI;
+    private SpriteRenderer sprite;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -48,6 +53,12 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(Shoot());
         }
+        if (health <= 0)
+        {
+            SceneManager.LoadScene(0);
+        }
+
+        healthUI.SetText("Health: " + health);
     }
 
     IEnumerator Shoot()
@@ -56,6 +67,13 @@ public class PlayerMovement : MonoBehaviour
         bullet.GetComponent<Rigidbody2D>().velocity = bulletSpeed * transform.up;
         yield return new WaitForSeconds(1f);
         Destroy(bullet);
+    }
+
+    public IEnumerator Damage()
+    {
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = new Color(0, 255, 255);
     }
 
 }
