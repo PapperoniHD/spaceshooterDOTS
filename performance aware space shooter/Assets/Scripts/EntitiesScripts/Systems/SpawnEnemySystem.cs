@@ -3,6 +3,8 @@ using Unity.Burst;
 using Unity.Entities;
 using Unity.VisualScripting.FullSerializer;
 using Unity;
+using Unity.Transforms;
+
 [BurstCompile]
 [UpdateInGroup(typeof(InitializationSystemGroup))]
 public partial struct SpawnEnemySystem : ISystem
@@ -28,7 +30,9 @@ public partial struct SpawnEnemySystem : ISystem
 
         for (var i = 0; i < enemyAspect.NumberEnemiesToSpawn; i++)
         {
-            ecb.Instantiate(enemyAspect.EnemyPrefab);
+            var newEnemy = ecb.Instantiate(enemyAspect.EnemyPrefab);
+            var newEnemyTransform = enemyAspect.GetRandomSpawnTransform();
+            ecb.SetComponent(newEnemy, newEnemyTransform);
         }
         
         ecb.Playback(state.EntityManager);

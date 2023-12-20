@@ -16,8 +16,8 @@ public class EnemyBaker : Baker<EnemySpawnMono>
 {
     public override void Bake(EnemySpawnMono authoring)
     {
-        TransformUsageFlags flags = new TransformUsageFlags();
-        Entity entity = GetEntity(flags);
+        //TransformUsageFlags flags = new TransformUsageFlags();
+        Entity entity = GetEntity(TransformUsageFlags.None);
 
         AddComponent(entity, new EnemySpawnProperties
         {

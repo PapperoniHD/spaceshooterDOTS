@@ -133,9 +133,10 @@ GameObject:
   m_Component:
   - component: {fileID: 573627068}
   - component: {fileID: 573627069}
+  - component: {fileID: 573627070}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 573627067}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -207,6 +208,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &573627070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573627067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: befac87cc66e4e848a9f5b1506b5c7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 5
+  ProjectilePrefab: {fileID: 5487827406776679169, guid: 70223e4eac664564c846f84a1a9d07fe, type: 3}
 --- !u!1 &1072518900
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,10 +252,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FieldDimensions:
-    x: 40
-    y: 40
-  NumberOfSpawns: 250
-  EnemyPrefab: {fileID: 3532191434341922187, guid: 2d4c5448227db8d459c6e32e1dd14c78, type: 3}
+    x: 1
+    y: 1
+  NumberOfSpawns: 20
+  EnemyPrefab: {fileID: 3532191434341922187, guid: 8cf2c6c5137b5a741ae7d0eaa34ed8eb, type: 3}
   RandomSeed: 100
 --- !u!4 &1072518902
 Transform:
@@ -251,7 +266,7 @@ Transform:
   m_GameObject: {fileID: 1072518900}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.876, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
