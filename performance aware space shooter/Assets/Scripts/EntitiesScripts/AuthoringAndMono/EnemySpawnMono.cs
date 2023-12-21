@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
+using Unity.Transforms;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class EnemySpawnMono : MonoBehaviour
@@ -10,6 +14,7 @@ public class EnemySpawnMono : MonoBehaviour
     public int NumberOfSpawns;
     public GameObject EnemyPrefab;
     public uint RandomSeed;
+    public float Time;
 }
 
 public class EnemyBaker : Baker<EnemySpawnMono>

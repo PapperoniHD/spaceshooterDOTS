@@ -19,6 +19,8 @@ public class ProjectileMoveSpeedAuthoring : MonoBehaviour
             var entity = GetEntity(TransformUsageFlags.Dynamic);
             AddComponent(entity, new ProjectileMoveSpeed { Value = authoring.ProjectileMoveSpeed });
             AddComponent<CollisionTag>(entity);
+            AddComponent<CollisionComponent>(entity);
+            AddComponent<DestroyComponent>(entity);
         }
     }
 }

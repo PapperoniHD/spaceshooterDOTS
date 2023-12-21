@@ -4,6 +4,7 @@ using Unity.Burst;
 using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyMoveSpeedAuthoring : MonoBehaviour
 {
@@ -20,7 +21,8 @@ public class EnemyAuthoringBaker : Baker<EnemyMoveSpeedAuthoring>
         {
             Value = authoring.MoveSpeed
         });
-        AddComponent<CollisionTag>(enemyEntity);
+        AddComponent<CollisionComponent>(enemyEntity);
+        AddComponent<DestroyComponent>(enemyEntity);
     }
 }
 
@@ -44,7 +46,7 @@ public partial class EnemyMove : SystemBase
     {
         
         var deltaTime = SystemAPI.Time.DeltaTime;
-
+        
         new EnemyMoveJob
         {
             _playerEntity = _player,
@@ -68,5 +70,6 @@ public partial struct EnemyMoveJob : IJobEntity
         {
             transform.Position.y = 20;
         }
+        
     }
 }

@@ -17,8 +17,7 @@ public class PlayerAuthoringBaker : Baker<PlayerAuthoring>
 
         AddComponent<PlayerTag>(playerEntity);
         AddComponent<InputComponent>(playerEntity);
-        AddComponent<CollisionTag>(playerEntity);
-        
+        AddComponent<CollisionTag>(playerEntity);    
 
         AddComponent<FireProjectileTag>(playerEntity);
         SetComponentEnabled<FireProjectileTag>(playerEntity, false);
