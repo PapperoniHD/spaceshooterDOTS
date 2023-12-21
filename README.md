@@ -4,7 +4,7 @@ A Spaceshooter made with ECS in Unity
 
 Movement
 >Orientiation - A and D key
->Shooting Space
+>Shooting - Space Button
 
 NOTE:
 In the build, it takes a while for asteroids to start spawning
